@@ -1,5 +1,7 @@
-from src.power import power_function
-from src.constants import SAMPLE_CONSTANT
+from SourceFromFile import SourceFromFile
+from SourceFromGenerator import SourceFromGenerator
+from SourceFromWeb import SourceFromWeb
+from task_manager import task_manager
 
 
 def main() -> None:
@@ -7,14 +9,26 @@ def main() -> None:
     Обязательнная составляющая программ, которые сдаются. Является точкой входа в приложение
     :return: Данная функция ничего не возвращает
     """
+    source_from_web = SourceFromWeb("telegram.com")
+    source_from_file = SourceFromFile("./text.txt")
+    source_from_generators = SourceFromGenerator(1)
 
-    target, degree = map(int, input("Введите два числа разделенные пробелом: ").split(" "))
+    print("Tasks from web:")
 
-    result = power_function(target=target, power=degree)
+    for el in task_manager(source_from_web):
+        print(el)
 
-    print(result)
+    print("\n","Tasks from file:")
 
-    print(SAMPLE_CONSTANT)
+    for el in task_manager(source_from_file):
+        print(el)
+
+    print("\n","Tasks from generators:")
+
+    for el in task_manager(source_from_generators):
+        print(el)
+
+
 
 if __name__ == "__main__":
     main()
