@@ -14,7 +14,7 @@ class SourceFromFile:
         self.path = path
         self.seed = seed
 
-    def get_tasks(self) -> list[Task]:
+    def get_tasks(self) -> list[Task] | None:
         """
 
         """
@@ -29,6 +29,6 @@ class SourceFromFile:
             tasks.append(task)
         except Exception:
             random.seed(None)
-            raise Exception
+            return None
         random.seed(None)
         return tasks

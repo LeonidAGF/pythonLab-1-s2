@@ -1,8 +1,6 @@
 from Task import Task
 import random
-
-from generator import get_new_str
-
+import requests
 
 class SourceFromWeb:
     """
@@ -16,7 +14,7 @@ class SourceFromWeb:
         self.seed = seed
 
 
-    def get_tasks(self) -> list[Task]:
+    def get_tasks(self) -> list[Task] | None:
         """
 
         """
@@ -25,14 +23,23 @@ class SourceFromWeb:
         if self.seed is not None:
             random.seed(self.seed)
 
-        tasks:list[Task] = []
+        try:
 
-        for col in range(0,random.randint(5, 25)):
-            data = {}
-            data["name"] = get_new_str()
-            el = Task(random.randint(10000, 99999),data)
-            tasks.append(el)
+            tasks:list[Task] = []
 
-        random.seed(None)
+            for col in range(0,random.randint(1, 3)):
+                data = {}
+                response = requests.get(self.path)
+                try:
+                    data["data"] = response.json()
+                except Exception:
+                    data["data"] = response.text
+                el = Task(random.randint(10000, 99999),data)
+                tasks.append(el)
+
+            random.seed(None)
+        except Exception:
+            random.seed(None)
+            return None
 
         return tasks

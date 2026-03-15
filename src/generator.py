@@ -1,17 +1,5 @@
 import random
 
-def get_new_str():
-    """
-    функция для генерации какой-то строки
-    :return: новую строку
-    """
-    title = ""
-    len = random.randint(5, 25)
-    for i in range(len):
-        sym = chr(random.randint(97, 122))
-        title += sym
-    return title
-
 def rand_int_array(n: int, lo: int, hi: int, *, distinct=False, seed=None) -> list[int]:
     """
     Функция генерирующая массив случайных чисел

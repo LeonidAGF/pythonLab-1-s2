@@ -6,7 +6,7 @@ class TaskSource(Protocol):
     """
 
     """
-    def get_tasks(self) -> list[Task]:
+    def get_tasks(self) -> list[Task] | None:
         """
 
         """

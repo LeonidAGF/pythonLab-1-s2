@@ -16,7 +16,7 @@ class SourceFromGenerator:
         self.type = type
         self.seed = seed
 
-    def get_tasks(self) -> list[Task]:
+    def get_tasks(self) -> list[Task] | None:
         """
 
         """
