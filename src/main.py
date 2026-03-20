@@ -10,6 +10,7 @@ def main() -> None:
     """
     source_from_web1 = SourceFromWeb("https://my.meteoblue.com/packages/basic-1h_basic-day?apikey=bOico7hWTVAzPQYM&lat=55.752&lon=37.6178&asl=155&format=json")
     source_from_web2 = SourceFromWeb("https://ru.wikipedia.org/wiki/Python")
+    source_from_web3 = SourceFromWeb("https://jsonplaceholder.typicode.com/posts",type_of_requests='post',message={"prompt": "{title: 'foo',body: 'bar',userId: 1}"})
     source_from_file = SourceFromFile("text")
     source_from_generators = SourceFromGenerator(1)
 
@@ -19,6 +20,9 @@ def main() -> None:
         print(el)
 
     for el in task_manager(source_from_web2):
+        print(el)
+
+    for el in task_manager(source_from_web3):
         print(el)
 
     print("\n","Tasks from file:")
