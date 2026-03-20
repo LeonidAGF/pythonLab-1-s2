@@ -1,4 +1,4 @@
-from SourceFromFile import SourceFromFile
+from src.SourceFromFile import SourceFromFile
 
 
 def test_source_from_file():
@@ -11,5 +11,5 @@ def test_source_from_file():
 
     assert len(sff1.get_tasks())!=0
     assert len(sff2.get_tasks())!=0
-    assert sff1.get_tasks()['text'].id==sff2.get_tasks()['text'].id
+    assert sff1.get_tasks()[0].id==sff2.get_tasks()[0].id
     assert len(sff3.get_tasks())!=0

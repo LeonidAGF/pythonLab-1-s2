@@ -1,13 +1,11 @@
 def cat(path: str) -> str:
     """
-    функция реализующая команду cat, которая выводит в консоль текст файла
-    :return: возращает 1 если при выполнении произошла ошибка, иначе возвращет 0
+    функция реализующая команду cat, которая возвращает текст из файла
     """
-    file_text:str = ''
     try:
         file = open(path, 'r')
         file_text = file.read()
         file.close()
+        return file_text
     except Exception:
         return 'error'
-    return file_text

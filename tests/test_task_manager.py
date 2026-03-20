@@ -1,8 +1,8 @@
-from Task import Task
-from SourceFromFile import SourceFromFile
-from SourceFromGenerator import SourceFromGenerator
-from SourceFromWeb import SourceFromWeb
-from task_manager import task_manager
+from src.Task import Task
+from src.SourceFromFile import SourceFromFile
+from src.SourceFromGenerator import SourceFromGenerator
+from src.SourceFromWeb import SourceFromWeb
+from src.task_manager import task_manager
 
 def test_task_manager():
     """

@@ -1,4 +1,4 @@
-from SourceFromWeb import SourceFromWeb
+from src.SourceFromWeb import SourceFromWeb
 
 
 def test_source_from_web():
@@ -11,5 +11,5 @@ def test_source_from_web():
 
     assert len(sff1.get_tasks())!=0
     assert len(sff2.get_tasks())!=0
-    assert sff1.get_tasks()['data'].id==sff2.get_tasks()['data'].id
+    assert sff1.get_tasks()[0].id==sff2.get_tasks()[0].id
     assert sff3.get_tasks() is None
