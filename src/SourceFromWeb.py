@@ -1,23 +1,19 @@
-import json
-from typing import Dict, Any
-from requests import Response
+from src.client import ClientBase
 from src.Task import Task
 import random
-import requests
+
 
 class SourceFromWeb:
     """
         Источник задач из интернета
     """
 
-    def __init__(self, path: str, type_of_requests: str = 'get',message:Dict = None, seed=None) -> None:
+    def __init__(self, client: ClientBase, seed=None) -> None:
         """
             Инициализатор источника задач из интернета
         """
-        self.path = path
+        self.client = client
         self.seed = seed
-        self.type = type_of_requests
-        self.message = message
 
     def get_tasks(self) -> list[Task] | None:
         """
@@ -30,23 +26,12 @@ class SourceFromWeb:
 
         try:
             tasks: list[Task] = []
-            for col in range(0, random.randint(1, 3)):
-                data: Dict[str, Any] = {}
-                if self.type=="get":
-                    response: Response = requests.get(self.path)
-                    try:
-                        data["data"] = response.json()
-                    except Exception:
-                        data["data"] = response.text
-
-                else:
-                    response = requests.post(self.path, data=json.dumps(self.message))
-                    try:
-                        data["data"] = response.json()
-                    except Exception:
-                        data["data"] = str(response)
-                el: Task = Task(random.randint(10000, 99999), data)
-                tasks.append(el)
+            if isinstance(self.client, ClientBase):
+                for col in range(0, random.randint(1, 3)):
+                    el: Task = self.client.get_task()
+                    tasks.append(el)
+            else:
+                raise TypeError
             random.seed(None)
             return tasks
         except Exception:

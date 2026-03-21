@@ -1,3 +1,4 @@
+from src.client import ClientGet as Client
 from src.Task import Task
 from src.SourceFromFile import SourceFromFile
 from src.SourceFromGenerator import SourceFromGenerator
@@ -8,7 +9,9 @@ def test_task_manager():
     """
         Тесты для task_manager
     """
-    source_from_web = SourceFromWeb("https://ru.wikipedia.org/wiki/Python")
+    client = Client("https://ru.wikipedia.org/wiki/Python")
+
+    source_from_web = SourceFromWeb(client)
     source_from_file = SourceFromFile("text")
     source_from_generators = SourceFromGenerator(1)
     task:Task = Task(1,{})
